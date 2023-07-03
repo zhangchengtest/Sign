@@ -1,3 +1,11 @@
+
+pip install redis==2.10.6
+不然redis版本太高
+
+https://m.jd.com/ 查看key and pin
+
+
+
 # Sign
 签到啦
 
@@ -8,6 +16,9 @@
 `pip install uvicorn fastapi httpx loguru diskcache apscheduler redis -i https://pypi.doubanio.com/simple/`
 
 `uvicorn sign:app --host 0.0.0.0 --port 8081`
+
+nohup uvicorn sign:app --host 0.0.0.0 --port 8081 > uvicorn.log &
+
 
 打开 http://127.0.0.1:8081/docs
 

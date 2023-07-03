@@ -26,8 +26,9 @@ from apscheduler.jobstores.redis import RedisJobStore
 scheduler = AsyncIOScheduler(
     jobstores={
         "default": RedisJobStore(**{
-            "host": '127.0.0.1',
+            "host": '101.43.116.91',
             "port": 6379,
+            "password": '123456',
             "db": 10,
             "max_connections": 10
         })
@@ -82,8 +83,8 @@ async def shutdown_event():
 # 京豆签到
 @app.post("/signBeanAct", tags=["京东签到"])
 async def api(request: Request, background_tasks: BackgroundTasks,
-              pt_pin: Union[str, None] = Body(default="jd_XXX"),
-              pt_key: Union[str, None] = Body(default="AAJkPgXXX_XXX")):
+              pt_pin: Union[str, None] = Body(default="xxx"),
+              pt_key: Union[str, None] = Body(default="bbbb")):
     cache.set(pt_pin, pt_key)
     background_tasks.add_task(signBeanAct, **{"pt_pin": pt_pin, "pt_key": pt_key})
     task_id = str(uuid4())
